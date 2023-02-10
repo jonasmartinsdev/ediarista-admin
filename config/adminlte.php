@@ -295,13 +295,13 @@ return [
             'icon'    => 'fas fa-fw fa-broom',
             'submenu' => [
                 [
-                    'text' => 'Listar de Serviços',
+                    'text' => 'Lista de Serviços',
                     'route'  => 'servicos.index',
                     'icon'    => 'fas fa-fw fa-list',
 
                 ],
                 [
-                    'text' => 'Cadastrar Serviços',
+                    'text' => 'Novo Serviço',
                     'route'  => 'servicos.create',
                     'icon'    => 'fas fa-fw fa-file',
 
@@ -345,6 +345,16 @@ return [
     */
 
     'plugins' => [
+        'jqueryMask' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',
+                ],
+            ]
+        ],
         'Datatables' => [
             'active' => false,
             'files' => [
