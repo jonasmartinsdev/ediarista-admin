@@ -45,4 +45,26 @@ class ServicoRequest extends FormRequest
             'horas_outros' => ['required', 'integer', 'min:1', 'max:8']
         ];
     }
+
+    public function validationData()
+    {
+        $dados = $this->all();
+        $dados['valor_minimo'] = $this->formataValorMonetario($dados['valor_minimo']);
+        $dados['valor_quarto'] = $this->formataValorMonetario($dados['valor_quarto']);
+        $dados['valor_sala'] = $this->formataValorMonetario($dados['valor_sala']);
+        $dados['valor_banheiro'] = $this->formataValorMonetario($dados['valor_banheiro']);
+        $dados['valor_cozinha'] = $this->formataValorMonetario($dados['valor_cozinha']);
+        $dados['valor_quintal'] = $this->formataValorMonetario($dados['valor_quintal']);
+        $dados['valor_outros'] = $this->formataValorMonetario($dados['valor_outros']);
+
+        $this->replace($dados); // substitui os valores da requisao antiga pelo novos valores
+
+        return $dados;
+    }
+
+
+    public function formataValorMonetario(string $valor)
+    {
+        return str_replace(['.', ','], ['', '.'], $valor);
+    }
 }
