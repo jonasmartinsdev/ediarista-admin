@@ -57,10 +57,8 @@ class ServicoController extends Controller
      * @param Servico $servico
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function edit(int $id)
+    public function edit(Servico $servico) // modo Route model bind
     {
-        $servico = Servico::findOrFail($id);
-
         return view('servicos.edit')-> with('servico', $servico);
     }
 
@@ -72,11 +70,9 @@ class ServicoController extends Controller
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
 
-    public function update(int $id, ServicoRequest $request)
+    public function update(Servico $servico, ServicoRequest $request)
     {
         $dados = $request->except('_token', '_method');
-
-        $servico = Servico::findOrFail($id);
 
         $servico->update($dados);
 
